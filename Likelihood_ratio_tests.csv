@@ -1,0 +1,19 @@
+"Test","LR_chisq","df","p_value"
+"NB2_mass site-by-organ interaction",4.17300797438531,2,0.124120304368592
+"NB2_mass joint site effects including interaction",5.7740295643078,4,0.216671406830944
+"NB1_mass site-by-organ interaction",3.42252516201887,2,0.180637579001512
+"NB1_mass joint site effects including interaction",6.72864015346153,4,0.150942295132793
+"NB2_offset site-by-organ interaction",6.09463715122172,2,0.0474860841745288
+"NB2_offset joint site effects including interaction",8.22861715636446,4,0.0835536479306306
+"NB1_offset site-by-organ interaction",5.50167794442461,2,0.063874249999864
+"NB1_offset joint site effects including interaction",8.75016647006299,4,0.0676566806871792
+"Occurrence site-by-organ interaction",2.28827098536294,2,0.318499143646522
+"Occurrence joint site effects including interaction",7.42766797579816,4,0.114941451135263
+"NB2_mass_no_random site-by-organ interaction",4.22241979018651,2,0.121091369913766
+"NB2_mass_no_random joint site effects including interaction",5.78398733537409,4,0.21587146230041
+"NB1_mass_no_random site-by-organ interaction",3.1084626843799,2,0.211351777414347
+"NB1_mass_no_random joint site effects including interaction",6.84625481698151,4,0.144239465731199
+"Occurrence_no_random site-by-organ interaction",2.28827098690547,2,0.318499143400874
+"Occurrence_no_random joint site effects including interaction",7.42766797984063,4,0.114941450952225
+"NB2: log-mass coefficient equals one",4.88971860784045,1,0.027017089251379
+"NB1: log-mass coefficient equals one",5.54708874863007,1,0.0185114514137235

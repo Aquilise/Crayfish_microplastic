@@ -1,0 +1,48 @@
+
+	Exact one-sample Kolmogorov-Smirnov test
+
+data:  simulationOutput$scaledResiduals
+D = 0.073879, p-value = 0.6564
+alternative hypothesis: two-sided
+
+
+	DHARMa nonparametric dispersion test via sd of residuals fitted vs. simulated
+
+data:  simulationOutput
+dispersion = 1.1868, p-value = 0.434
+alternative hypothesis: two.sided
+
+
+	DHARMa zero-inflation test via comparison to expected zeros with simulation under H0 = fitted model
+
+data:  simulationOutput
+ratioObsSim = 1.0067, p-value = 1
+alternative hypothesis: two.sided
+
+$Uniformity
+
+	Exact one-sample Kolmogorov-Smirnov test
+
+data:  simulationOutput$scaledResiduals
+D = 0.073879, p-value = 0.6564
+alternative hypothesis: two-sided
+
+
+$Dispersion
+
+	DHARMa nonparametric dispersion test via sd of residuals fitted vs. simulated
+
+data:  simulationOutput
+dispersion = 1.1868, p-value = 0.434
+alternative hypothesis: two.sided
+
+
+$Zero_inflation
+
+	DHARMa zero-inflation test via comparison to expected zeros with simulation under H0 = fitted model
+
+data:  simulationOutput
+ratioObsSim = 1.0067, p-value = 1
+alternative hypothesis: two.sided
+
+

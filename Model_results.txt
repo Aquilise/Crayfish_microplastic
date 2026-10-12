@@ -1,0 +1,524 @@
+PAIRED CRAYFISH ANALYSIS
+Input: C:/Users/Lenovo/Desktop/Das et al., Crayfish_MP/Environmental Pollution_Submission/Das et al.,RVS.xlsx 
+Animals: 47  Organ samples: 94  Suspected particles: 163 
+Mass unit: grams. Counts are analysed as supplied, with no additional blank correction.
+Pairing check:
+
+ 2 
+47 
+    
+     Gill GIT
+  S1   10  10
+  S2   17  17
+  S3   20  20
+# A tibble: 6 × 10
+  Site  Organ     n particle_total positive occurrence_percent mean_particles_g sample_SD median_particles_g pooled_particles_g
+  <fct> <fct> <int>          <dbl>    <dbl>              <dbl>            <dbl>     <dbl>              <dbl>              <dbl>
+1 S1    Gill     10             20        6               60              12.0      15.3                4.14               9.42
+2 S1    GIT      10             13        7               70               2.81      2.48               2.67               2.81
+3 S2    Gill     17             33       14               82.4            11.3       9.50               9.43              10.1 
+4 S2    GIT      17             37       13               76.5             4.91      5.70               2.37               4.43
+5 S3    Gill     20             18        8               40               4.00      6.12               0                  3.91
+6 S3    GIT      20             42       14               70               4.79      6.78               2.87               4.77
+# A tibble: 3 × 4
+  Site  animals positive percent
+  <fct>   <int>    <int>   <dbl>
+1 S1         10        9      90
+2 S2         17       17     100
+3 S3         20       16      80
+
+MODEL STATUS AND AIC
+                 Model usable convergence positive_definite_Hessian    random_SD near_zero_random_effect     logLik      AIC
+1             NB2_mass   TRUE           0                      TRUE 0.2607129284                   FALSE -164.88506 347.7701
+2             NB1_mass   TRUE           0                      TRUE 0.3366659558                   FALSE -164.27315 346.5463
+3           NB2_offset   TRUE           0                      TRUE 0.3046669899                   FALSE -167.32992 350.6598
+4           NB1_offset   TRUE           0                      TRUE 0.3614992767                   FALSE -167.04670 350.0934
+5           Occurrence   TRUE           0                      TRUE 0.0001257648                    TRUE  -55.71337 125.4267
+6   NB2_mass_no_random   TRUE           0                      TRUE           NA                      NA -164.94480 345.8896
+7   NB1_mass_no_random   TRUE           0                      TRUE           NA                      NA -164.45797 344.9159
+8 Occurrence_no_random   TRUE           0                      TRUE           NA                      NA  -55.71337 123.4267
+Compare AIC only among models of the same response and same observations.
+A near-zero random SD is a boundary warning, not a test of independence.
+
+REDUCED MODEL STATUS
+                  Model  Reduced usable convergence positive_definite_Hessian     logLik      AIC
+1              NB2_mass additive   TRUE           0                      TRUE -166.97156 347.9431
+2              NB2_mass  no_site   TRUE           0                      TRUE -167.77207 345.5441
+3              NB1_mass additive   TRUE           0                      TRUE -165.98442 345.9688
+4              NB1_mass  no_site   TRUE           0                      TRUE -167.63747 345.2749
+5            NB2_offset additive   TRUE           0                      TRUE -170.37724 352.7545
+6            NB2_offset  no_site   TRUE           0                      TRUE -171.44423 350.8885
+7            NB1_offset additive   TRUE           0                      TRUE -169.79754 351.5951
+8            NB1_offset  no_site   TRUE           0                      TRUE -171.42178 350.8436
+9            Occurrence additive   TRUE           0                      TRUE  -56.85751 123.7150
+10           Occurrence  no_site   TRUE           0                      TRUE  -59.42721 124.8544
+11   NB2_mass_no_random additive   TRUE           0                      TRUE -167.05601 346.1120
+12   NB2_mass_no_random  no_site   TRUE           0                      TRUE -167.83679 343.6736
+13   NB1_mass_no_random additive   TRUE           0                      TRUE -166.01220 344.0244
+14   NB1_mass_no_random  no_site   TRUE           0                      TRUE -167.88110 343.7622
+15 Occurrence_no_random additive   TRUE           0                      TRUE  -56.85751 121.7150
+16 Occurrence_no_random  no_site   TRUE           0                      TRUE  -59.42721 122.8544
+
+
+MODEL: NB2_mass 
+ Family: nbinom2  ( log )
+Formula:          MP_count ~ Site * Organ + log_mass + (1 | Individual)
+Data: dat
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    347.8     370.7    -164.9     329.8        85 
+
+Random effects:
+
+Conditional model:
+ Groups     Name        Variance Std.Dev.
+ Individual (Intercept) 0.06797  0.2607  
+Number of obs: 94, groups:  Individual, 47
+
+Dispersion parameter for nbinom2 family (): 1.69 
+
+Conditional model:
+                Estimate Std. Error z value Pr(>|z|)  
+(Intercept)      0.75651    0.78965   0.958   0.3380  
+SiteS2          -0.01384    0.43874  -0.032   0.9748  
+SiteS3          -0.81132    0.46567  -1.742   0.0815 .
+OrganGIT        -0.46253    0.63131  -0.733   0.4638  
+log_mass         0.05911    0.41451   0.143   0.8866  
+SiteS2:OrganGIT  0.50733    0.62568   0.811   0.4175  
+SiteS3:OrganGIT  1.25894    0.64315   1.958   0.0503 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Conditional model:
+ Groups     Name        Std.Dev.
+ Individual (Intercept) 0.26071 
+Optimizer message: relative convergence (4) 
+                                Test LR_chisq df   p_value
+1 NB2_mass site-by-organ interaction 4.173008  2 0.1241203
+                                               Test LR_chisq df   p_value
+1 NB2_mass joint site effects including interaction  5.77403  4 0.2166714
+
+ORGAN COMPARISONS: unadjusted 95% CIs; Holm-adjusted p-values across three sites
+Site = S1:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 1.5880889 1.0025763 Inf 0.4607898  5.473269    1   0.733  0.4638 0.9275397
+
+Site = S2:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 0.9561860 0.5093443 Inf 0.3366057  2.716209    1  -0.084  0.9330 0.9329707
+
+Site = S3:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 0.4509445 0.2111044 Inf 0.1801537  1.128764    1  -1.701  0.0889 0.2666994
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+Tests are performed on the log scale 
+
+
+MODEL: NB1_mass 
+ Family: nbinom1  ( log )
+Formula:          MP_count ~ Site * Organ + log_mass + (1 | Individual)
+Data: dat
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    346.5     369.4    -164.3     328.5        85 
+
+Random effects:
+
+Conditional model:
+ Groups     Name        Variance Std.Dev.
+ Individual (Intercept) 0.1133   0.3367  
+Number of obs: 94, groups:  Individual, 47
+
+Dispersion parameter for nbinom1 family (): 1.01 
+
+Conditional model:
+                Estimate Std. Error z value Pr(>|z|)
+(Intercept)      0.65453    0.71612   0.914    0.361
+SiteS2           0.17279    0.42907   0.403    0.687
+SiteS3          -0.77869    0.48536  -1.604    0.109
+OrganGIT        -0.25058    0.56487  -0.444    0.657
+log_mass         0.06601    0.39830   0.166    0.868
+SiteS2:OrganGIT  0.20294    0.59289   0.342    0.732
+SiteS3:OrganGIT  1.03324    0.63504   1.627    0.104
+
+Conditional model:
+ Groups     Name        Std.Dev.
+ Individual (Intercept) 0.33667 
+Optimizer message: relative convergence (4) 
+                                Test LR_chisq df   p_value
+1 NB1_mass site-by-organ interaction 3.422525  2 0.1806376
+                                               Test LR_chisq df   p_value
+1 NB1_mass joint site effects including interaction  6.72864  4 0.1509423
+
+ORGAN COMPARISONS: unadjusted 95% CIs; Holm-adjusted p-values across three sites
+Site = S1:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 1.2847684 0.7257324 Inf 0.4246227  3.887286    1   0.444  0.6573 1.0000000
+
+Site = S2:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 1.0487893 0.5401331 Inf 0.3822206  2.877812    1   0.092  0.9263 1.0000000
+
+Site = S3:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 0.4571867 0.2167433 Inf 0.1805326  1.157795    1  -1.651  0.0988 0.2962718
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+Tests are performed on the log scale 
+
+
+MODEL: NB2_offset 
+ Family: nbinom2  ( log )
+Formula:          MP_count ~ Site * Organ + offset(log_mass) + (1 | Individual)
+Data: dat
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    350.7     371.0    -167.3     334.7        86 
+
+Random effects:
+
+Conditional model:
+ Groups     Name        Variance Std.Dev.
+ Individual (Intercept) 0.09282  0.3047  
+Number of obs: 94, groups:  Individual, 47
+
+Dispersion parameter for nbinom2 family (): 1.51 
+
+Conditional model:
+                Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      2.33330    0.38804   6.013 1.82e-09 ***
+SiteS2           0.02039    0.46608   0.044   0.9651    
+SiteS3          -1.00298    0.48268  -2.078   0.0377 *  
+OrganGIT        -1.31370    0.53122  -2.473   0.0134 *  
+SiteS2:OrganGIT  0.45758    0.65831   0.695   0.4870    
+SiteS3:OrganGIT  1.49406    0.66410   2.250   0.0245 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Conditional model:
+ Groups     Name        Std.Dev.
+ Individual (Intercept) 0.30467 
+Optimizer message: relative convergence (4) 
+                                  Test LR_chisq df    p_value
+1 NB2_offset site-by-organ interaction 6.094637  2 0.04748608
+                                                 Test LR_chisq df    p_value
+1 NB2_offset joint site effects including interaction 8.228617  4 0.08355365
+
+ORGAN COMPARISONS: unadjusted 95% CIs; Holm-adjusted p-values across three sites
+Site = S1:
+ contrast      ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 3.719918 1.9760821 Inf  1.313291 10.536727    1   2.473  0.0134 0.0401946
+
+Site = S2:
+ contrast      ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 2.354016 0.8932642 Inf  1.118946  4.952331    1   2.256  0.0241 0.0481240
+
+Site = S3:
+ contrast      ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 0.834975 0.3292227 Inf  0.385525  1.808398    1  -0.457  0.6474 0.6473738
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+Tests are performed on the log scale 
+
+
+MODEL: NB1_offset 
+ Family: nbinom1  ( log )
+Formula:          MP_count ~ Site * Organ + offset(log_mass) + (1 | Individual)
+Data: dat
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    350.1     370.4    -167.0     334.1        86 
+
+Random effects:
+
+Conditional model:
+ Groups     Name        Variance Std.Dev.
+ Individual (Intercept) 0.1307   0.3615  
+Number of obs: 94, groups:  Individual, 47
+
+Dispersion parameter for nbinom1 family (): 1.09 
+
+Conditional model:
+                Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      2.05941    0.36493   5.643 1.67e-08 ***
+SiteS2           0.31661    0.45042   0.703   0.4821    
+SiteS3          -0.79678    0.50793  -1.569   0.1167    
+OrganGIT        -0.92604    0.50576  -1.831   0.0671 .  
+SiteS2:OrganGIT -0.01881    0.61319  -0.031   0.9755    
+SiteS3:OrganGIT  1.10529    0.65572   1.686   0.0919 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Conditional model:
+ Groups     Name        Std.Dev.
+ Individual (Intercept) 0.3615  
+Optimizer message: relative convergence (4) 
+                                  Test LR_chisq df    p_value
+1 NB1_offset site-by-organ interaction 5.501678  2 0.06387425
+                                                 Test LR_chisq df    p_value
+1 NB1_offset joint site effects including interaction 8.750166  4 0.06765668
+
+ORGAN COMPARISONS: unadjusted 95% CIs; Holm-adjusted p-values across three sites
+Site = S1:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 2.5244979 1.2768011 Inf 0.9368447  6.802718    1   1.831  0.0671 0.1342084
+
+Site = S2:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 2.5724399 0.8311736 Inf 1.3655763  4.845901    1   2.924  0.0035 0.0103577
+
+Site = S3:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 0.8358987 0.3328210 Inf 0.3830361  1.824180    1  -0.450  0.6526 0.6525728
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+Tests are performed on the log scale 
+
+
+MODEL: Occurrence 
+ Family: binomial  ( logit )
+Formula:          Presence ~ Site * Organ + (1 | Individual)
+Data: dat
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    125.4     143.2     -55.7     111.4        87 
+
+Random effects:
+
+Conditional model:
+ Groups     Name        Variance  Std.Dev. 
+ Individual (Intercept) 1.582e-08 0.0001258
+Number of obs: 94, groups:  Individual, 47
+
+Conditional model:
+                Estimate Std. Error z value Pr(>|z|)
+(Intercept)       0.4055     0.6455   0.628    0.530
+SiteS2            1.1350     0.9063   1.252    0.210
+SiteS3           -0.8109     0.7906  -1.026    0.305
+OrganGIT          0.4418     0.9449   0.468    0.640
+SiteS2:OrganGIT  -0.8036     1.2746  -0.630    0.528
+SiteS3:OrganGIT   0.8109     1.1573   0.701    0.483
+
+Conditional model:
+ Groups     Name        Std.Dev.  
+ Individual (Intercept) 0.00012576
+Optimizer message: relative convergence (4) 
+                                  Test LR_chisq df   p_value
+1 Occurrence site-by-organ interaction 2.288271  2 0.3184991
+                                                 Test LR_chisq df   p_value
+1 Occurrence joint site effects including interaction 7.427668  4 0.1149415
+
+ORGAN COMPARISONS: unadjusted 95% CIs; Holm-adjusted p-values across three sites
+Site = S1:
+ contrast   odds.ratio        SE  df  asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT  0.6428631 0.6074484 Inf 0.10088087  4.096644    1  -0.468  0.6401 1.0000000
+
+Site = S2:
+ contrast   odds.ratio        SE  df  asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT  1.4358931 1.2282423 Inf 0.26854468  7.677639    1   0.423  0.6723 1.0000000
+
+Site = S3:
+ contrast   odds.ratio        SE  df  asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT  0.2857139 0.1909007 Inf 0.07712557  1.058436    1  -1.875  0.0608 0.1823924
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+
+MODEL: NB2_mass_no_random 
+ Family: nbinom2  ( log )
+Formula:          MP_count ~ Site * Organ + log_mass
+Data: dat
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    345.9     366.2    -164.9     329.9        86 
+
+
+Dispersion parameter for nbinom2 family (): 1.47 
+
+Conditional model:
+                Estimate Std. Error z value Pr(>|z|)  
+(Intercept)      0.80901    0.76458   1.058   0.2900  
+SiteS2          -0.02845    0.43417  -0.066   0.9478  
+SiteS3          -0.81184    0.46252  -1.755   0.0792 .
+OrganGIT        -0.49354    0.63249  -0.780   0.4352  
+log_mass         0.06880    0.40541   0.170   0.8652  
+SiteS2:OrganGIT  0.54320    0.63296   0.858   0.3908  
+SiteS3:OrganGIT  1.29481    0.64837   1.997   0.0458 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Optimizer message: relative convergence (4) 
+                                          Test LR_chisq df   p_value
+1 NB2_mass_no_random site-by-organ interaction  4.22242  2 0.1210914
+                                                         Test LR_chisq df   p_value
+1 NB2_mass_no_random joint site effects including interaction 5.783987  4 0.2158715
+
+ORGAN COMPARISONS: unadjusted 95% CIs; Holm-adjusted p-values across three sites
+Site = S1:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 1.6381059 1.0360821 Inf 0.4742063  5.658699    1   0.780  0.4352 0.8704093
+
+Site = S2:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 0.9515572 0.5063631 Inf 0.3353322  2.700192    1  -0.093  0.9257 0.9256553
+
+Site = S3:
+ contrast       ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 0.4487590 0.2108609 Inf 0.1786711  1.127125    1  -1.705  0.0881 0.2644271
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+Tests are performed on the log scale 
+
+
+MODEL: NB1_mass_no_random 
+ Family: nbinom1  ( log )
+Formula:          MP_count ~ Site * Organ + log_mass
+Data: dat
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    344.9     365.3    -164.5     328.9        86 
+
+
+Dispersion parameter for nbinom1 family (): 1.26 
+
+Conditional model:
+                Estimate Std. Error z value Pr(>|z|)
+(Intercept)      0.72925    0.68577   1.063    0.288
+SiteS2           0.22420    0.41963   0.534    0.593
+SiteS3          -0.73662    0.47918  -1.537    0.124
+OrganGIT        -0.20328    0.56337  -0.361    0.718
+log_mass         0.09552    0.38801   0.246    0.806
+SiteS2:OrganGIT  0.09423    0.59572   0.158    0.874
+SiteS3:OrganGIT  0.93404    0.63467   1.472    0.141
+Optimizer message: relative convergence (4) 
+                                          Test LR_chisq df   p_value
+1 NB1_mass_no_random site-by-organ interaction 3.108463  2 0.2113518
+                                                         Test LR_chisq df   p_value
+1 NB1_mass_no_random joint site effects including interaction 6.846255  4 0.1442395
+
+ORGAN COMPARISONS: unadjusted 95% CIs; Holm-adjusted p-values across three sites
+Site = S1:
+ contrast      ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 1.225414 0.6903621 Inf 0.4062009  3.696789    1   0.361  0.7182 1.0000000
+
+Site = S2:
+ contrast      ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 1.115220 0.5744016 Inf 0.4063902  3.060396    1   0.212  0.8323 1.0000000
+
+Site = S3:
+ contrast      ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT 0.481541 0.2263617 Inf 0.1916472  1.209941    1  -1.555  0.1201 0.3601527
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log scale 
+Tests are performed on the log scale 
+
+
+MODEL: Occurrence_no_random 
+ Family: binomial  ( logit )
+Formula:          Presence ~ Site * Organ
+Data: dat
+
+      AIC       BIC    logLik -2*log(L)  df.resid 
+    123.4     138.7     -55.7     111.4        88 
+
+
+Conditional model:
+                Estimate Std. Error z value Pr(>|z|)
+(Intercept)       0.4055     0.6455   0.628    0.530
+SiteS2            1.1350     0.9063   1.252    0.210
+SiteS3           -0.8109     0.7906  -1.026    0.305
+OrganGIT          0.4418     0.9449   0.468    0.640
+SiteS2:OrganGIT  -0.8036     1.2746  -0.630    0.528
+SiteS3:OrganGIT   0.8109     1.1573   0.701    0.483
+Optimizer message: relative convergence (4) 
+                                            Test LR_chisq df   p_value
+1 Occurrence_no_random site-by-organ interaction 2.288271  2 0.3184991
+                                                           Test LR_chisq df   p_value
+1 Occurrence_no_random joint site effects including interaction 7.427668  4 0.1149415
+
+ORGAN COMPARISONS: unadjusted 95% CIs; Holm-adjusted p-values across three sites
+Site = S1:
+ contrast   odds.ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT  0.6428585 0.6074441 Inf 0.1008801  4.096615    1  -0.468  0.6401 1.0000000
+
+Site = S2:
+ contrast   odds.ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT  1.4358944 1.2282440 Inf 0.2685447  7.677652    1   0.423  0.6723 1.0000000
+
+Site = S3:
+ contrast   odds.ratio        SE  df asymp.LCL asymp.UCL null z.ratio p.value    p_Holm
+ Gill / GIT  0.2857164 0.1909022 Inf 0.0771263  1.058444    1  -1.875  0.0608 0.1823972
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+MASS PROPORTIONALITY: offset fixes log-mass coefficient at one
+                                  Test LR_chisq df    p_value
+1 NB2: log-mass coefficient equals one 4.889719  1 0.02701709
+                                  Test LR_chisq df    p_value
+1 NB1: log-mass coefficient equals one 5.547089  1 0.01851145
+No ordinary chi-square LR test is used for random-effect variance: zero variance is a boundary.
+
+EXACT PAIRED OCCURRENCE TESTS
+  Site Gill_only GIT_only  p_exact   p_Holm
+1   S1         2        3 1.000000 1.000000
+2   S2         4        3 1.000000 1.000000
+3   S3         2        8 0.109375 0.328125
+
+Simulating residuals: NB2_mass 
+
+Simulating residuals: NB1_mass 
+
+Simulating residuals: NB2_offset 
+
+Simulating residuals: NB1_offset 
+
+Simulating residuals: Occurrence 
+
+SESSION INFORMATION
+R version 4.5.3 (2026-03-11 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26300)
+
+Matrix products: default
+  LAPACK version 3.12.1
+
+locale:
+[1] LC_COLLATE=English_India.utf8  LC_CTYPE=English_India.utf8    LC_MONETARY=English_India.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=English_India.utf8    
+
+time zone: Asia/Shanghai
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] emmeans_2.0.3    DHARMa_0.5.0     glmmTMB_1.1.15.2 patchwork_1.3.2  ggplot2_4.0.3    tidyr_1.3.2      dplyr_1.2.1     
+[8] readxl_1.5.0    
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.6        TMB_1.9.25          lattice_0.22-9      numDeriv_2016.8-1.1 vctrs_0.7.3         tools_4.5.3        
+ [7] Rdpack_2.6.6        generics_0.1.4      parallel_4.5.3      sandwich_3.1-1      tibble_3.3.1        FSA_0.10.1         
+[13] pkgconfig_2.0.3     Matrix_1.7-5        RColorBrewer_1.1-3  S7_0.2.1            lifecycle_1.0.5     compiler_4.5.3     
+[19] farver_2.1.2        textshaping_1.0.5   gap.datasets_0.0.6  codetools_0.2-20    httpuv_1.6.17       htmltools_0.5.9    
+[25] later_1.4.8         pillar_1.11.1       nloptr_2.2.1        RTMB_2.0            MASS_7.3-65         iterators_1.0.14   
+[31] reformulas_0.4.4    foreach_1.5.2       boot_1.3-32         multcomp_1.4-30     mime_0.13           nlme_3.1-169       
+[37] digest_0.6.39       tidyselect_1.2.1    mvtnorm_1.3-7       purrr_1.2.2         labeling_0.4.3      splines_4.5.3      
+[43] fastmap_1.2.0       grid_4.5.3          cli_3.6.6           magrittr_2.0.5      survival_3.8-6      utf8_1.2.6         
+[49] TH.data_1.1-5       withr_3.0.2         promises_1.5.0      scales_1.4.0        estimability_1.5.1  otel_0.2.0         
+[55] lme4_2.0-1          cellranger_1.1.0    ragg_1.5.2          zoo_1.8-15          shiny_1.14.0        rbibutils_2.4.1    
+[61] doParallel_1.0.17   gap_1.15.2          mgcv_1.9-4          rlang_1.2.0         Rcpp_1.1.1-1.1      qgam_2.0.0         
+[67] xtable_1.8-8        glue_1.8.0          svglite_2.2.2       rstudioapi_0.19.0   minqa_1.2.8         plyr_1.8.9         
+[73] R6_2.6.1            systemfonts_1.3.2  
+
+FINISHED. Output folder: C:/Users/Lenovo/Desktop/Das et al., Crayfish_MP/Environmental Pollution_Submission/Crayfish_GLMM_results 

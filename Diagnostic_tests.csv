@@ -1,0 +1,16 @@
+"Model","Test","p_value"
+"NB2_mass","Uniformity",0.956585803490049
+"NB2_mass","Dispersion",0.512
+"NB2_mass","Zero_inflation",0.886
+"NB1_mass","Uniformity",0.656392923709636
+"NB1_mass","Dispersion",0.434
+"NB1_mass","Zero_inflation",1
+"NB2_offset","Uniformity",0.88866468278909
+"NB2_offset","Dispersion",0.684
+"NB2_offset","Zero_inflation",1
+"NB1_offset","Uniformity",0.977182232934163
+"NB1_offset","Dispersion",0.42
+"NB1_offset","Zero_inflation",0.722
+"Occurrence","Uniformity",0.336361652700828
+"Occurrence","Dispersion",0.906
+"Occurrence","Zero_inflation",1
